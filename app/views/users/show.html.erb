@@ -1,2 +1,31 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%  provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user, size:22 %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+      <h3>Comments</h3>
+      <ol class="microposts">
+        <li>
+          <span class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae architecto fugiat aperiam necessitatibus facere molestiae ex commodi alias.</span>
+          <span class="timestamp">
+            Posted 2 days ago.
+          </span>
+          <%= link_to "delete", "#" %>
+        </li>
+        <li>
+          <span class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae architecto fugiat aperiam necessitatibus facere molestiae ex commodi alias.</span>
+          <span class="timestamp">
+            Posted 2 days ago.
+          </span>
+          <%= link_to "delete", "#" %>
+        </li>
+      </ol>
+
+  </div>
+</div>

@@ -5,7 +5,11 @@
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Авторы", users_path %></li>
-          <li><%= link_to "Регистрация", new_user_path %></li>
+          <% if false #signed_in? %>
+
+          <% else %>
+            <li><%= link_to "Регистрация", new_user_path %></li>
+          <% end %>
         </ul>
       </nav>
     </div>

@@ -55,7 +55,7 @@ describe "Страница пользователя" do
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-        it { should have_link('Выход') }
+        it { should have_link('Выйти') }
       end
     end
   end

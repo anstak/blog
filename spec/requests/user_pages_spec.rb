@@ -84,7 +84,7 @@ describe "Страница пользователя" do
       let(:new_email) { "new@example.com" }
       before do
         fill_in "Имя пользователя:", with: new_name
-        fill_in "Адрес электронной почты:", with: new_email
+        # fill_in "Адрес электронной почты:", with: new_email
         fill_in "Пароль:", with: user.password
         fill_in "Ещё раз пароль:", with: user.password
         click_button "Сохранить"
@@ -94,7 +94,7 @@ describe "Страница пользователя" do
       it { should have_selector('div.alert.alert-success') }
       it { should have_link('Выйти', href: signout_path) }
       specify { user.reload.name.should  == new_name }
-      specify { user.reload.email.should == new_email }
+      # specify { user.reload.email.should == new_email }
     end
   end
 

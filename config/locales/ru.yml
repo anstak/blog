@@ -1,7 +1,8 @@
 ru:
   will_paginate:
-    previous_label: Назад
-    next_label: Вперед
+    previous_label: "Назад"
+    next_label: "Вперед"
+    page_gap: "&hellip;"
   date:
     abbr_day_names:
     - Вс

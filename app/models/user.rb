@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   before_save { |user| user.email = email.downcase } # это для уникальности email, вместе с добавлением индекса в миграцию ["email"], unique:true
   before_save :create_remember_token

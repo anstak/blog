@@ -92,4 +92,27 @@ describe User do
 
     it { should be_admin }
   end
+
+  describe "связь с сообщениями(post)" do
+
+    before { @user.save }
+    let!(:old_post) do
+      FactoryGirl.create(:post, user: @user, created_at: 1.day.ago)
+    end
+    let!(:new_post) do
+      FactoryGirl.create(:post, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "должен иметь правильные посты в нужном порядке" do
+      @user.posts.should == [new_post, old_post]
+    end
+    it "должен удалить связанные посты" do
+      posts = @user.posts.dup
+      @user.destroy
+      posts.should_not be_empty
+      posts.each do |post|
+        Post.find_by_id(post.id).should be_nil
+      end
+    end
+  end
 end

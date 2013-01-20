@@ -29,5 +29,24 @@ describe Post do
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
   end
-
+  describe "когда user_id не задан" do
+    before { @post.user_id = nil }
+    it { should_not be_valid }
+  end
+  describe "с пустым названием" do
+    before { @post.name = " " }
+    it { should_not be_valid }
+  end
+  describe "с пустым контентом" do
+    before { @post.content = " " }
+    it { should_not be_valid }
+  end
+  describe "когда название слишком короткое" do
+    before { @post.name = "a" * 4 }
+    it { should_not be_valid }
+  end
+  describe "когда контент слишком короткий" do
+    before { @post.content = "a" * 19 }
+    it { should_not be_valid }
+  end
 end

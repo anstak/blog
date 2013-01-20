@@ -1,4 +1,23 @@
 <% provide(:title, 'Главная') %>
 
-<h1>Последние заметки</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+
+<% if @posts.any? %>
+  <h1 class="left">Последние заметки (всего <%= @posts.count %>)</h1>
+  <ol class="posts">
+    <% @posts.each do |post| %>
+    <li>
+      <span class="name"><%= post.name %></span>
+      <span class="content"><%= post.content %></span>
+      <span class="author">
+        Автор: <%= link_to User.find(post.user_id).name, user_path(User.find(post.user_id)) %>,
+      </span>
+      <span class="timestamp">
+        <%= post.created_at.strftime("%d.%m.%y") %>
+      </span>
+    </li>
+    <% end %>
+  </ol>
+  <%= will_paginate @posts %>
+<% else %>
+  <h1>Пока еще нет ни одного поста...</h1>
+<% end %>

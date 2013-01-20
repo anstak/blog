@@ -81,6 +81,12 @@ p {
   }
 }
 
+.edit {
+  a {padding:0px 2px 0 3px !important;margin:10px 10px 0 -8px;
+  &:hover { background:#0058CC !important; }
+  }
+}
+
 /* footer */
 
 footer {
@@ -175,6 +181,7 @@ input {
     &:last-child {
       border-bottom: 1px solid $grayLighter;
     }
+    .delete { float:right; margin-right:640px; }
   }
 }
 

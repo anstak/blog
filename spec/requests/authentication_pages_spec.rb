@@ -28,13 +28,14 @@ describe "Авторизация" do
     describe "с правильной информацией" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        fill_in "Адрес электронной почты:",    with: user.email
+        fill_in "Адрес электронной почты:", with: user.email
         fill_in "Пароль:", with: user.password
         click_button "Войти"
       end
 
       it { should have_selector('title', text: user.name) }
       it { should have_link('Профиль', href: user_path(user)) }
+      it { should have_link('редактировать профиль', href: edit_user_path(user)) }
       it { should have_link('Выйти', href: signout_path) }
       it { should_not have_link('Войти', href: signin_path) }
     end

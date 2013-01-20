@@ -1,6 +1,11 @@
+# -*- coding: utf-8 -*-
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:edit, :update] # это для verify_accesses
+  before_filter :correct_user, only: [:edit, :update] # это для verify_accesses
+  before_filter :admin_user, only: :destroy
 
   def index
+    @users = User.paginate(page: params[:page])
   end
 
   def new
@@ -15,11 +20,46 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Регистрация успешно завершена. Добро пожаловать!"
       redirect_to @user
     else
       render 'new'
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Профиль успешно обновлен"
+      sign_in @user
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_url
+  end
+
+  private
+    def signed_in_user # это для verify_accesses
+      unless signed_in?
+        store_location # эта строка для friendly_forwarding
+        redirect_to signin_url, notice: "Авторизируйтесь пожалуйста"
+      end
+    end
+    def correct_user # это для verify_accesses
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+    def admin_user
+      redirect_to(root_path) unless current_user.admin?
+    end
 end

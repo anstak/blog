@@ -14,8 +14,10 @@ describe User do
   it { should respond_to(:remember_token)}
   it { should respond_to(:autor)}
   it { should respond_to(:admin)}
+  it { should respond_to(:authenticate) }
 
   it { should be_valid }
+  it { should_not be_admin }
 
   describe "Имя не задано" do
     before { @user.name = " " }
@@ -79,5 +81,14 @@ describe User do
       it { should_not == user_for_invalid_password }
       specify { user_for_invalid_password.should be_false }
     end
+  end
+
+  describe "должен быть админом когда переключим" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
   end
 end

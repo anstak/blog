@@ -1,8 +1,5 @@
-<% provide(:title, 'Новая статья') %>
-
-<h1>Написать новую статью</h1>
 <%= form_for(@newpost) do |f| %>
-  <%= render 'shared/error_messages', object: @newpost  %>
+  <%= render 'shared/error_messages', object: f.object  %>
   <div class="field">
     <%= f.label :name, "Название статьи:" %>
     <%= f.text_field :name %>

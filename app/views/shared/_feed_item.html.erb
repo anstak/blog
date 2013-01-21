@@ -1,0 +1,12 @@
+<li id="<%= feed_item.id %>">
+  <span class="name">
+    <%= feed_item.name %>
+  </span>
+  <% if current_user?(feed_item.user) %>
+  <%= link_to "удалить", feed_item, method: :delete, data: { confirm:"Вы уверены?" }, title: feed_item.name %>
+  <% end %>
+  <span class="content"><%= feed_item.content %></span>
+  <span class="timestamp">
+    <%= feed_item.created_at.strftime("%d.%m.%y") %>
+  </span>
+</li>

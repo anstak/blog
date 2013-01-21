@@ -114,5 +114,15 @@ describe User do
         Post.find_by_id(post.id).should be_nil
       end
     end
+
+    describe "не должен содержать чужие посты" do
+      let(:other_post) do
+        FactoryGirl.create(:post, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(new_post) }
+      its(:feed) { should include(old_post) }
+      its(:feed) { should_not include(other_post) }
+    end
   end
 end

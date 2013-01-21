@@ -1,4 +1,4 @@
-<% provide(:title, 'Новая статья') %>
+<% provide(:title, 'Мои статьи') %>
 <% if signed_in? %>
   <div class="row">
     <aside class="span4">
@@ -7,8 +7,8 @@
       </section>
     </aside>
     <div class="span8">
-      <h1>Написать новую статью</h1>
-      <%= render 'shared/post_form' %>
+      <h1>Мои статьи</h1>
+      <%= render 'shared/feed' %>
     </div>
   </div>
 <% end %>

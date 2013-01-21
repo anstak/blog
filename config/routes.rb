@@ -1,9 +1,10 @@
 Blog::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :posts, only: [:new, :create, :destroy]
+  resources :posts
 
   root :to => 'static_pages#home'
+  match '/user_posts', to: 'posts#show'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
 

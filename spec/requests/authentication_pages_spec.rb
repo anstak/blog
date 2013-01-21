@@ -35,7 +35,6 @@ describe "Авторизация" do
 
       it { should have_selector('title', text: user.name) }
       it { should have_link('Профиль', href: user_path(user)) }
-      it { should have_link('редактировать профиль', href: edit_user_path(user)) }
       it { should have_link('Выйти', href: signout_path) }
       it { should_not have_link('Войти', href: signin_path) }
     end

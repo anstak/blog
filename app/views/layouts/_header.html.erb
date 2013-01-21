@@ -8,7 +8,6 @@
           <li><%= link_to "Авторы", users_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Профиль", user_path(current_user) %></li>
-            <li class="edit"><a title="редактировать профиль" href="<%= edit_user_path(current_user)  %>"><i class="icon-edit icon-white"></i></a></li>
             <li><%= link_to "Выйти", signout_path, method: "delete" %></li>
           <% else %>
             <li><%= link_to "Регистрация", new_user_path %></li>

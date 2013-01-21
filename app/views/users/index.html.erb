@@ -5,14 +5,7 @@
 <%= will_paginate %>
 <ul class="users">
   <% @users.each do |user| %>
-    <li>
-      <% if !user.admin? && !current_user?(user) && signed_in?%>
-        <%#= link_to "удалить", user, method: :delete, data: { confirm: "Вы уверены?" } %>
-        <a class="delete" title="удалить" href="<%= user_path(user) %>" data-confirm="Вы уверены?" data-method="delete" rel="nofollow"><i class="icon-remove"></i></a>
-      <% end %>
-      <%= gravatar_for user, size: 22 %>
-      <%= link_to user.name, user %>
-    </li>
+    <%= render user %>
   <% end %>
 </ul>
 <%= will_paginate %>

@@ -69,8 +69,8 @@ describe "Страница пользователя" do
     end
 
     describe "на странице должно быть" do
-      it { should have_selector('h1',    text: "Редатирование профиля") }
-      it { should have_selector('title', text: "Редатирование профиля") }
+      it { should have_selector('h1',    text: "Редактирование профиля") }
+      it { should have_selector('title', text: "Редактирование профиля") }
       it { should have_link('Изменить аватар', href: 'http://gravatar.com/emails') }
     end
 

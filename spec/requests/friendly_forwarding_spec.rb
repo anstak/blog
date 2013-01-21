@@ -18,7 +18,7 @@ describe "FriendlyForwardings" do
       describe "после того как авторизовался" do
 
         it "должен передать желанную защищенную страницы" do
-          page.should have_selector('title', text: 'Редатирование профиля')
+          page.should have_selector('title', text: 'Редактирование профиля')
         end
       end
     end

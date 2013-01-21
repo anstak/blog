@@ -264,3 +264,6 @@ ru:
         password_digest: "Пароль"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+      post:
+        name: "Название статьи"
+        content: "Текст статьи"

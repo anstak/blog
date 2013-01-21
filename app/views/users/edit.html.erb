@@ -1,11 +1,15 @@
-<% provide(:title, 'Редатирование профиля') %>
-<h1>Редатирование профиля</h1>
+<% provide(:title, 'Редактирование профиля') %>
 
 <div class="row">
-  <div class="span6 offset3">
-
+  <aside class="span4">
+    <section>
+      <%= render 'shared/user_info' %>
+    </section>
+  </aside>
+  <div class="span8">
+    <h1>Редактирование профиля</h1>
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: @user %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <p><%= gravatar_for @user, size: 25 %>
       <a href="http://gravatar.com/emails" target="_blank">Изменить аватар</a></p>
@@ -24,6 +28,5 @@
 
       <%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
     <% end %>
-
   </div>
 </div>

@@ -51,6 +51,10 @@ h1 {
   }
 }
 
+.span8 {
+  h1 {font-size: 1.7em;letter-spacing: 0; margin-bottom: 20px; text-align:left;}
+}
+
 h2 {
   font-size: 1.7em;
   letter-spacing: -1px;
@@ -81,12 +85,6 @@ p {
   &:hover {
     color: white;
     text-decoration: none;
-  }
-}
-
-.edit {
-  a {padding:0px 2px 0 3px !important;margin:10px 10px 0 -8px;
-  &:hover { background:#0058CC !important; }
   }
 }
 
@@ -134,8 +132,8 @@ aside {
       font-size: 1.4em;
       text-align: left;
       letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
+      margin-bottom: 20px;
+      margin-top: 12px;
     }
   }
 }

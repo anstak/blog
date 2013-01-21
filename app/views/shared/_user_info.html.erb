@@ -1,0 +1,26 @@
+<% if signed_in? %>
+  <h1>
+    <%= gravatar_for current_user, size:22 %>
+    <%= current_user.name %>
+  </h1>
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+      <li><a tabindex="-1" href="#">Мои статьи</a></li>
+      <li><a tabindex="-1" href="#">Мои комментарии</a></li>
+      <li><a tabindex="-1" href="<%= edit_user_path(current_user) %>">Редактировать профиль</a></li>
+      <li><a tabindex="-1" href="<%= new_post_path %>">Написать новую статью</a></li>
+      <li class="divider"></li>
+      <li>Всего статей: <%= current_user.posts.count  %></li>
+    </ul>
+  </div>
+<% else %>
+  <h1>
+    <%= gravatar_for @user, size:22 %>
+    <%= @user.name %>
+  </h1>
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+      <li>Всего статей: <%= @user.posts.count  %></li>
+    </ul>
+  </div>
+<% end %>

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module SessionsHelper
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
@@ -32,5 +33,12 @@ module SessionsHelper
 
   def store_location # это для friendly_forwarding
     session[:return_to] = request.url
+  end
+
+  def signed_in_user # это для verify_accesses и для постов
+    unless signed_in?
+      store_location # эта строка для friendly_forwarding
+      redirect_to signin_url, notice: "Авторизируйтесь пожалуйста"
+    end
   end
 end

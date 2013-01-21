@@ -49,12 +49,6 @@ class UsersController < ApplicationController
   end
 
   private
-    def signed_in_user # это для verify_accesses
-      unless signed_in?
-        store_location # эта строка для friendly_forwarding
-        redirect_to signin_url, notice: "Авторизируйтесь пожалуйста"
-      end
-    end
     def correct_user # это для verify_accesses
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)

@@ -1,0 +1,13 @@
+<% provide(:title, 'Новая статья') %>
+
+<h1>Написать новую статью</h1>
+<%= form_for(@newpost) do |f| %>
+  <%= render 'shared/error_messages', object: @newpost  %>
+  <div class="field">
+    <%= f.label :name, "Название статьи:" %>
+    <%= f.text_field :name %>
+    <%= f.label :content, "Текст:" %>
+    <%= f.text_area :content, placeholder: "Начните новую статью..." %>
+  </div>
+  <%= f.submit "Создать", class: "btn btn-large btn-primary" %>
+<% end %>

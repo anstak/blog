@@ -20,6 +20,19 @@ describe "Подтверждение доступов" do
         specify { response.should redirect_to(signin_path) }
       end
     end
+
+    describe "в Posts controller" do
+
+      describe "отсылаем Postt запрос в create action" do
+        before { post posts_path }
+        specify { response.should redirect_to(signin_path) }
+      end
+
+      describe "отсылаем DELETE запрос в destroy action" do
+        before { delete post_path(FactoryGirl.create(:post)) }
+        specify { response.should redirect_to(signin_path) }
+      end
+    end
   end
 
   describe "для другого залогиненого юзера" do
@@ -29,7 +42,7 @@ describe "Подтверждение доступов" do
 
     describe "посещаем страницу Users#edit" do
       before { visit edit_user_path(wrong_user) }
-      it { should_not have_selector('title', text: full_title('Редатирование профиля')) }
+      it { should_not have_selector('title', text: full_title('Редактирование профиля')) }
     end
 
     describe "отсылаем PUT request в Users#update действие" do
@@ -58,7 +71,7 @@ describe "Подтверждение доступов" do
   #  end
 
   #   describe "который хочет изменить свой email" do
-  #     it { should have_selector('h1', text: "Редатирование профиля" ) }
+  #     it { should have_selector('h1', text: "Редактирование профиля" ) }
   #     it { should have_selector("input[value='#{user.name}']" ) }
   #     it { should_not have_selector("input[value='#{user.email}']" ) }
   #   end

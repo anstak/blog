@@ -1,0 +1,8 @@
+<li>
+  <% if !user.admin? && !current_user?(user) && signed_in? && current_user.admin? %>
+    <a class="delete" title="удалить" href="<%= user_path(user) %>" data-confirm="Вы уверены?" data-method="delete" rel="nofollow"><i class="icon-remove"></i></a>
+    <%#= link_to "удалить", user, method: :delete, data: { confirm: "Вы уверены?" } %>
+  <% end %>
+  <%= gravatar_for user, size: 22 %>
+  <%= link_to user.name, user %>
+</li>

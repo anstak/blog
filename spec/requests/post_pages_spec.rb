@@ -42,10 +42,30 @@ describe "Post pages" do
       visit user_posts_path
     end
 
-    it "should render the user's feed" do
+    it "должно показать только посты текущего юзера" do
       user.feed.each do |item|
         page.should have_selector("li##{item.id}", text: item.content)
       end
     end
+
+    describe "редактирование поста" do
+      before do
+        click_link "редактировать статью"
+      end
+      it { should have_selector('h1', text: "Редактирование статьи") }
+      it "должна иметь правильные поля" do
+        should have_selector('input#post_name')
+        should have_selector('textarea#post_content')
+      end
+
+      describe "с неправильной информацией" do
+        before do
+          fill_in 'Название статьи:', with: " "
+          click_button "Сохранить"
+        end
+        it { should have_selector('div.alert.alert-error') }
+      end
+    end
   end
+
 end

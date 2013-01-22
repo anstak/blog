@@ -23,13 +23,18 @@ describe "Подтверждение доступов" do
 
     describe "в Posts controller" do
 
-      describe "отсылаем Postt запрос в create action" do
+      describe "отсылаем POST запрос в create action" do
         before { post posts_path }
         specify { response.should redirect_to(signin_path) }
       end
 
       describe "отсылаем DELETE запрос в destroy action" do
         before { delete post_path(FactoryGirl.create(:post)) }
+        specify { response.should redirect_to(signin_path) }
+      end
+
+      describe "отсылаем PUT запрос в destroy action" do
+        before { put post_path(FactoryGirl.create(:post)) }
         specify { response.should redirect_to(signin_path) }
       end
     end
@@ -45,6 +50,10 @@ describe "Подтверждение доступов" do
       it { should_not have_selector('title', text: full_title('Редактирование профиля')) }
     end
 
+    describe "отсылаем PUT request в Users#update действие" do
+      before { put user_path(wrong_user) }
+      specify { response.should redirect_to(root_path) }
+    end
     describe "отсылаем PUT request в Users#update действие" do
       before { put user_path(wrong_user) }
       specify { response.should redirect_to(root_path) }

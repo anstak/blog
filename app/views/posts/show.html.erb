@@ -1,2 +1,17 @@
 <% provide(:title, @current_post.name) %>
 
+<div class="current-post">
+  <h1 class="left"><%= @current_post.name %></h1>
+  <span class="content"><%= @current_post.content %></span>
+  <span class="author">
+    Автор: <%= link_to User.find(@current_post.user_id).name, user_path(User.find(@current_post.user_id)) %>,
+  </span>
+  <span class="timestamp">
+    <%= @current_post.created_at.strftime("%d.%m.%y") %>
+  </span>
+  <% if current_user?(@current_post.user) %>
+  | <%= link_to "удалить", @current_post, method: :delete, data: { confirm:"Вы уверены?" }, title: @current_post.name %>
+  | <%= link_to "редактировать статью", edit_post_path(@current_post.id) %>
+  <% end %>
+
+</div>

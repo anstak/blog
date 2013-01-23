@@ -220,3 +220,8 @@ aside {
 .pagination {
   .gap {border:none !important; padding:0 2px  !important;}
 }
+
+.current-post {
+  .content { padding:10px 0 20px 0; }
+  .author {font-weight:bold;}
+}

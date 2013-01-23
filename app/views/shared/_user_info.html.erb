@@ -5,7 +5,7 @@
   </h1>
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
-      <li><a tabindex="-1" href="<%= articles_path(current_user) %>">Мои статьи</a></li>
+      <li><a tabindex="-1" href="<%= post_user_path(current_user) %>">Мои статьи</a></li>
       <li><a tabindex="-1" href="#">Мои комментарии</a></li>
       <li><a tabindex="-1" href="<%= edit_user_path(current_user) %>">Редактировать профиль</a></li>
       <li><a tabindex="-1" href="<%= new_post_path %>">Написать новую статью</a></li>
@@ -20,7 +20,7 @@
   </h1>
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
-      <li><a tabindex="-1" href="<%= articles_path(@user) %>">Статьи пользователя</a></li>
+      <li><a tabindex="-1" href="<%= post_user_path(@user) %>">Статьи пользователя</a></li>
       <li><a tabindex="-1" href="#">Комментарии пользователя</a></li>
       <li class="divider"></li>
       <li>Всего статей: <%= @user.posts.count  %></li>

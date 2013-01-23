@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @user = current_user
     if @newpost.save
       flash[:success] = "Статья успешно создана!"
-      redirect_to articles_path(@user)
+      redirect_to post_user_path(@user)
     else
       render new_post_path
     end
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "Статья удалена."
-    redirect_to articles_path(@post.user)
+    redirect_to post_user_path(@post.user)
   end
 
   def edit

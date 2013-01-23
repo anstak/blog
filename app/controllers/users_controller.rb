@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def articles
+  def post
     @user = User.find(params[:id])
     @feed_items = @user.feed.paginate(page: params[:page]).per_page(5)
   end

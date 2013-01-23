@@ -4,7 +4,7 @@ Blog::Application.routes.draw do
   resources :posts
 
   root :to => 'static_pages#home'
-  match '/users/:id/articles', to: 'users#articles', :as => :articles
+  match '/users/:id/post', to: 'users#post', :as => :post_user
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
 

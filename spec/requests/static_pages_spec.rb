@@ -35,16 +35,20 @@ describe "Статическая страница" do
     before { visit root_path }
 
     it { should have_selector('title', text: 'Главная') }
-    it { should have_selector('h1', text: "Последние заметки (всего #{Post.count})") }
+    it { should have_selector('h1', text: "Последние статьи (всего #{Post.count})") }
 
     describe "имеет посты" do
       it { should have_content(m1.name) }
       it { should have_content(m1.content) }
+      it { should have_selector('.timestamp', text: m1.created_at.strftime("%d.%m.%y") )}
       it { should have_content(m2.name) }
       it { should have_content(m2.content) }
+      it { should have_selector('.timestamp', text: m2.created_at.strftime("%d.%m.%y") )}
       it "должны иметь ссылки на автора" do
         should have_link(user1.name, href: user_path(user1) )
         should have_link(user2.name, href: user_path(user2) )
+        should have_link(m1.name, href: post_path(m1) )
+        should have_link(m2.name, href: post_path(m2) )
       end
     end
   end

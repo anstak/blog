@@ -197,7 +197,12 @@ input {
     border-top: 1px solid #e8e8e8;
   }
 }
-.name {display: block; font-size:1.2em; font-weight: bold; padding-bottom: 5px;}
+.name {display: block; font-size:1.2em; font-weight: bold; padding-bottom: 5px;
+  a { color:#000; text-decoration:underline;
+    &:hover { text-decoration:none; }
+  }
+  &:first-letter { text-transform:uppercase; }
+}
 .content { display: block;padding-bottom: 5px; }
 .timestamp {
   color: $grayLight;

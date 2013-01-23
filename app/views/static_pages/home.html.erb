@@ -1,11 +1,11 @@
 <% provide(:title, 'Главная') %>
 
 <% if @posts.any? %>
-  <h1 class="left">Последние заметки (всего <%= @posts.count %>)</h1>
+  <h1 class="left">Последние статьи (всего <%= @posts.count %>)</h1>
   <ol class="posts">
     <% @posts.each do |post| %>
     <li>
-      <span class="name"><%= post.name %></span>
+      <span class="name"><%= link_to post.name, post_path(post.id) %></span>
       <span class="content"><%= post.content %></span>
       <span class="author">
         Автор: <%= link_to User.find(post.user_id).name, user_path(User.find(post.user_id)) %>,

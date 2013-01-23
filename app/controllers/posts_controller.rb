@@ -3,9 +3,13 @@ class PostsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user, only: [:destroy, :update, :edit]
 
-  def show
+  def index
     @feed_items = current_user.feed.paginate(page: params[:page]).per_page(5)
     @user = current_user
+  end
+
+  def show
+    @current_post = Post.find(params[:id])
   end
 
   def new

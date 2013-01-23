@@ -96,6 +96,20 @@ describe "Страница пользователя" do
       specify { user.reload.name.should  == new_name }
       # specify { user.reload.email.should == new_email }
     end
+
+    describe "заход на другого пользователя" do
+      let(:wrong_user) { FactoryGirl.create(:user) }
+      let!(:m1) { FactoryGirl.create(:post, user: wrong_user, name:"Lorem ipsum", content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.") }
+      before { visit user_path(wrong_user) }
+      it { should have_selector('title', text: wrong_user.name) }
+      it { should_not have_content('Мои статьи') }
+      it { should_not have_content('Мои комментарии') }
+      it { should_not have_content('Редактировать профиль') }
+      it { should_not have_content('Написать новую статью') }
+      it { should have_content("Всего статей: #{wrong_user.posts.count}") }
+      it { should have_link("Статьи пользователя", href: post_path(m1) ) }
+      it { should have_link("Комментарии пользователя", href: "#") }
+    end
   end
 
   describe "index пользователей" do

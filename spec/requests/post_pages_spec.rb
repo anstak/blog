@@ -43,7 +43,7 @@ describe "Post pages" do
     let!(:m4) { FactoryGirl.create(:post, user: user, name:"Sit amet", content: "Suscipit ea quasi quam veritatis ullam maiores.") }
 
     before do
-      visit user_posts_path
+      visit articles_path(user)
     end
 
     it { should have_selector('h1', text: "Мои статьи" )}
@@ -55,6 +55,10 @@ describe "Post pages" do
       user.feed.each do |item|
         page.should have_selector("li##{item.id}", text: item.content)
       end
+    end
+
+    it "должен удалить статью" do
+      expect { click_link "удалить" }.to change(Post, :count).by(-1)
     end
 
     describe "редактирование поста" do

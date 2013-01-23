@@ -46,6 +46,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def articles
+    @user = User.find(params[:id])
+    @feed_items = @user.feed.paginate(page: params[:page]).per_page(5)
+  end
+
   private
     def correct_user # это для verify_accesses
       @user = User.find(params[:id])

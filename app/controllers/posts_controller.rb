@@ -3,14 +3,8 @@ class PostsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user, only: [:destroy, :update, :edit]
 
-  def index
-    @feed_items = current_user.feed.paginate(page: params[:page]).per_page(5)
-    @user = current_user
-  end
-
   def show
-    @current_post = current_user.posts.find_by_id(params[:id])
-    @user = current_user
+    @current_post = Post.find_by_id(params[:id])
   end
 
   def new
@@ -23,7 +17,7 @@ class PostsController < ApplicationController
     @user = current_user
     if @newpost.save
       flash[:success] = "Статья успешно создана!"
-      redirect_to user_posts_path
+      redirect_to articles_path(@user)
     else
       render new_post_path
     end
@@ -31,7 +25,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to user_posts_path
+    flash[:success] = "Статья удалена."
+    redirect_to articles_path(@post.user)
   end
 
   def edit

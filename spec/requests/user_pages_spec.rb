@@ -107,7 +107,7 @@ describe "Страница пользователя" do
       it { should_not have_content('Редактировать профиль') }
       it { should_not have_content('Написать новую статью') }
       it { should have_content("Всего статей: #{wrong_user.posts.count}") }
-      it { should have_link("Статьи пользователя", href: post_path(m1) ) }
+      it { should have_link("Статьи пользователя", href: articles_path(wrong_user) ) }
       it { should have_link("Комментарии пользователя", href: "#") }
     end
   end

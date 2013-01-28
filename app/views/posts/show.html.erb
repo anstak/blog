@@ -14,4 +14,15 @@
   | <%= link_to "редактировать статью", edit_post_path(@current_post.id) %>
   <% end %>
 
+  <div class="comment-block">
+    <h2 class="left">Комментарии:</h2>
+    <% if @comments.any? %>
+      <ol class="comments">
+        <%= render partial: 'shared/comment_item', collection: @comments %>
+      </ol>
+    <% end %>
+
+    <%= render 'shared/comment_form' %>
+  </div>
+
 </div>

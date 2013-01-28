@@ -267,3 +267,5 @@ ru:
       post:
         name: "Название статьи"
         content: "Текст статьи"
+      comment:
+        content: "Комментарий"

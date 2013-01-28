@@ -62,6 +62,7 @@ h2 {
   text-align: center;
   font-weight: normal;
   color: $grayLight;
+  &.left { text-align:left !important; margin:20px 0 !important;}
 }
 
 p {
@@ -224,4 +225,19 @@ aside {
 .current-post {
   .content { padding:10px 0 20px 0; }
   .author {font-weight:bold;}
+}
+
+.comment-block {
+  .comments { margin:0;padding:0;
+    li { list-style: none; margin:0;padding:0;}
+  }
+}
+
+#comment_content { height:100px; margin-top:10px;}
+
+.comments {
+  li {border-bottom: 1px solid $grayMediumLight; padding:8px !important;
+    &:last-child { border:none;}
+  }
+  .comment-name { font-weight:bold; display: block;}
 }

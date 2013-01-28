@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 class PostsController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, only: [:destroy, :update, :edit, :create, :new]
   before_filter :correct_user, only: [:destroy, :update, :edit]
 
   def show
     @current_post = Post.find_by_id(params[:id])
+    @newcomment = Comment.new
+    @comments = @current_post.comments
   end
 
   def new
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
       flash[:success] = "Статья успешно создана!"
       redirect_to post_user_path(@user)
     else
-      render new_post_path
+      render 'new'
     end
   end
 

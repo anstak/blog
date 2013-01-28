@@ -18,9 +18,19 @@ namespace :db do
 
     users = User.all(limit: 10)
     2.times do
-      name = Faker::Lorem.sentence(3)
-      content = Faker::Lorem.sentence(100)
+      name = Faker::Lorem.sentence(5)
+      content = Faker::Lorem.sentence(200)
       users.each { |user| user.posts.create!(name: name, content: content) }
+    end
+
+    posts = Post.all(limit: 5)
+    10.times do
+      content = Faker::Lorem.sentence(30)
+      posts.each do |post|
+        comment = post.comments.build(content: content)
+        comment.user_id = rand(4)
+        comment.save
+      end
     end
   end
 end

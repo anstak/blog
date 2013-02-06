@@ -17,4 +17,21 @@ describe Comment do
 
   it { should be_valid }
 
+  describe "доступность аттрибутов" do
+    it "должен быть запрещен доступ к user_id" do
+      expect do
+        Comment.new(user_id: user.id)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
+
+  describe "с пустым контентом" do
+    before { @comment.content = " " }
+    it { should_not be_valid }
+  end
+  describe "когда контент слишком короткий" do
+    before { @comment.content = "a" * 5 }
+    it { should_not be_valid }
+  end
+
 end

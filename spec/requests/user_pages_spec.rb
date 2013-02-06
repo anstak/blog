@@ -108,7 +108,18 @@ describe "Страница пользователя" do
       it { should_not have_content('Написать новую статью') }
       it { should have_content("Всего статей: #{wrong_user.posts.count}") }
       it { should have_link("Статьи пользователя", href: post_user_path(wrong_user) ) }
+
     end
+  end
+
+  describe "Заход на страницу юзера под незалогиненым пользователем" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      visit user_path(user)
+      click_link "Статьи пользователя"
+    end
+
+    it { should have_selector('h1', text: "Просмотр статей" )}
   end
 
   describe "index пользователей" do

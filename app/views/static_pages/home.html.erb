@@ -7,6 +7,11 @@
     <li>
       <span class="name"><%= link_to post.name, post_path(post.id) %></span>
       <span class="content"><%= post.content %></span>
+      <span style="float:right;">Теги:
+      <% post.tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag) %> |
+      <% end %>
+      </span>
       <span class="author">
         Автор: <%= link_to User.find(post.user_id).name, user_path(User.find(post.user_id)) %>,
       </span>

@@ -14,6 +14,8 @@ describe Post do
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:relationships) }
+  it { should respond_to(:tags) }
 
   it { should be_valid }
 

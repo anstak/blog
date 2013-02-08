@@ -32,5 +32,20 @@ namespace :db do
         comment.save
       end
     end
+
+    words = %w{html5 css javascript web-design prototype stanford pool arrays}
+    5.times do |n|
+      Post.all.each do |post|
+        word = words[rand(7)]
+        tag = post.tags.build(name: word)
+        if post.tags.find_by_name(word) == nil
+          if tag.valid?
+            post.tags.create!(name: word)
+          else
+            post.relationships.create!(tag_id: Tag.find_by_name(word).id, post_id: post.id)
+          end
+        end
+      end
+    end
   end
 end

@@ -1,0 +1,5 @@
+<h1><%= @current_tag.name %></h1>
+<% @tag_posts.each do |tag_post| %>
+ <p> Пост: <%= link_to tag_post.name, post_path(tag_post) %></p>
+<% end %>
+  <%= will_paginate @tag_posts %>

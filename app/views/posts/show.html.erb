@@ -13,6 +13,11 @@
   | <%= link_to "удалить", @current_post, method: :delete, data: { confirm:"Вы уверены?" }, title: @current_post.name %>
   | <%= link_to "редактировать статью", edit_post_path(@current_post.id) %>
   <% end %>
+  <br><br>Теги:
+  <% @current_post.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %> |
+  <% end %>
+
 
   <div class="comment-block">
     <h2 class="left">Комментарии:</h2>

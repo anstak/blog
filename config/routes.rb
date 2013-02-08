@@ -3,6 +3,7 @@ Blog::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
   resources :comments
+  resources :tags, only: [:show]
 
   root :to => 'static_pages#home'
   match '/users/:id/post', to: 'users#post', :as => :post_user

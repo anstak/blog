@@ -3,6 +3,11 @@
     <%= link_to feed_item.name, post_path(feed_item.id) %>
   </span>
   <span class="content"><%= feed_item.content %></span>
+  <span style="float:right;">Теги:
+  <% feed_item.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %> |
+  <% end %>
+  </span>
   <span class="timestamp">
     <%= feed_item.created_at.strftime("%d.%m.%y") %>
   </span>

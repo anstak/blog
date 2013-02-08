@@ -17,4 +17,8 @@ FactoryGirl.define do
     user
   end
 
+  factory :tag do
+    name "Lorem"
+  end
+
 end
